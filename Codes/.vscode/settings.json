@@ -8,5 +8,6 @@
   "idf.flashType": "UART",
   "files.associations": {
     "type_traits": "c"
-  }
+  },
+  "cmake.configureOnOpen": false
 }
