@@ -7,6 +7,7 @@
 
 #include <stdint.h>
 #include "driver/rmt_encoder.h"
+#include "driver/rmt_tx.h"
 
 #ifdef __cplusplus
 extern "C" {

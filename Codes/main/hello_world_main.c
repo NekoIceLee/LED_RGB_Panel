@@ -12,7 +12,10 @@
 
 #include "ws2812.h"
 
+#define RGB_DATA_GPIO 5
+
 void app_main(void)
 {
+    ws2812_initialize(RGB_DATA_GPIO);
     
 }

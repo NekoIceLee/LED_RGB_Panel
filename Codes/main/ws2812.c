@@ -132,7 +132,7 @@ err:
     return ret;
 }
 
-static rmt_channel_t ws2812_rmt_chan_handle;
+static rmt_channel_handle_t ws2812_rmt_chan_handle;
 static rmt_encoder_handle_t ws2812_encoder;
 static rmt_transmit_config_t tx_config = {
     .loop_count = 0, // no transfer loop
@@ -150,7 +150,7 @@ esp_err_t ws2812_initialize(int gpio_num)
     };
     ESP_ERROR_CHECK(rmt_new_tx_channel(&tx_chan_cfg, &ws2812_rmt_chan_handle));
     led_strip_encoder_config_t encoder_config = {
-        .resolution = RMT_LED_STRIP_RESOLUTION_HZ,
+        .resolution = 10000000,
     };
     ESP_ERROR_CHECK(rmt_new_led_strip_encoder(&encoder_config, &ws2812_encoder));
     ESP_ERROR_CHECK(rmt_enable(ws2812_rmt_chan_handle));
@@ -159,6 +159,7 @@ esp_err_t ws2812_initialize(int gpio_num)
 
 esp_err_t ws2812_show(){
     ESP_ERROR_CHECK(rmt_transmit(ws2812_rmt_chan_handle, ws2812_encoder, txbuffer, sizeof(txbuffer), &tx_config));
+    return ESP_OK;
 }
 
 void ws2812_set_pixel(int row, int column, uint8_t r, uint8_t g, uint8_t b){
